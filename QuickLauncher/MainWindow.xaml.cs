@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
+using QuickLauncher.Lib;
+using System.Windows.Forms;
 
 namespace QuickLauncher
 {
@@ -11,9 +13,24 @@ namespace QuickLauncher
     /// </summary>
     public partial class MainWindow : Window
     {
+        private HotKey hotKey;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            hotKey = new HotKey(MOD_KEY.ALT, Keys.F);
+            hotKey.HotKeyPush += new EventHandler(hotKey_HotKeyPush);
+        }
+
+        void hotKey_HotKeyPush(object sender, EventArgs e)
+        {
+            //イベント処理
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            hotKey.Dispose();
         }
     }
 }
