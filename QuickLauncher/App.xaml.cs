@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuickLauncher.Lib;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -30,6 +31,8 @@ namespace QuickLauncher
                 ContextMenuStrip = menu
             };
             notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(NotifyIcon_Click);
+
+            GetInstance().Show();
         }
 
         private void NotifyIcon_Click(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -39,12 +42,17 @@ namespace QuickLauncher
                 var window = GetInstance();
 
                 if (window.IsVisible) window.Hide();
-                else window.Show();
+                else
+                {
+                    window.Show();
+                    window.Activate();
+                }
             }
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
+            GetInstance().GetHotKey().Dispose();
             Shutdown();
         }
 

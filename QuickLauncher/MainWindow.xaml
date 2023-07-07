@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickLauncher"
+        WindowStartupLocation="CenterScreen"
         Closing="Window_Closing"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="100" Width="200" WindowStyle="None">
     <Grid>
-        <Label x:Name="label" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="Console" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="180"/>
 
     </Grid>
 </Window>

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Interop;
-using System.Runtime.InteropServices;
 using QuickLauncher.Lib;
 using System.Windows.Forms;
 
@@ -23,15 +20,31 @@ namespace QuickLauncher
             hotKey.HotKeyPush += new EventHandler(hotKey_HotKeyPush);
         }
 
-        void hotKey_HotKeyPush(object sender, EventArgs e)
+        private void hotKey_HotKeyPush(object sender, EventArgs e)
         {
-            label.Content = "押された";
+            if (IsVisible) Hide();
+            else
+            {
+                Show();
+                Activate();
+                Console.Focus();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
             Hide();
+        }
+
+        public HotKey GetHotKey()
+        {
+            return hotKey;
+        }
+
+        private void Console_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
         }
     }
 }
