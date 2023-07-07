@@ -2,6 +2,8 @@
 using System.Windows;
 using QuickLauncher.Lib;
 using System.Windows.Forms;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace QuickLauncher
 {
@@ -44,7 +46,9 @@ namespace QuickLauncher
 
         private void Console_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            if (e.Key != Key.Enter) return;
 
+            System.Windows.MessageBox.Show(Console.Text);
         }
     }
 }

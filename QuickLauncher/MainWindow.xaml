@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickLauncher"
         WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
         Closing="Window_Closing"
         mc:Ignorable="d"
-        Title="MainWindow" Height="100" Width="200" WindowStyle="None">
+        Title="MainWindow" Height="100" Width="500" WindowStyle="None">
     <Grid>
-        <TextBox x:Name="Console" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="180"/>
-
+        <TextBox x:Name="Console" KeyDown="Console_KeyDown" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="480" Height="50" FontSize="36" VerticalContentAlignment="Center"/>
     </Grid>
 </Window>
