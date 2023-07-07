@@ -32,7 +32,7 @@ namespace QuickLauncher
             };
             notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(NotifyIcon_Click);
 
-            GetInstance().Show();
+            GetInstance().ShowWindow();
         }
 
         private void NotifyIcon_Click(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -41,12 +41,8 @@ namespace QuickLauncher
             {
                 var window = GetInstance();
 
-                if (window.IsVisible) window.Hide();
-                else
-                {
-                    window.Show();
-                    window.Activate();
-                }
+                if (window.IsVisible) window.HideWindow();
+                else GetInstance().ShowWindow();
             }
         }
 

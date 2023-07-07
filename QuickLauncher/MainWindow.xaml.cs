@@ -12,25 +12,35 @@ namespace QuickLauncher
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Launcher launcher;
         private HotKey hotKey;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            launcher = new Launcher();
             hotKey = new HotKey(MOD_KEY.ALT, Keys.F);
             hotKey.HotKeyPush += new EventHandler(hotKey_HotKeyPush);
         }
 
         private void hotKey_HotKeyPush(object sender, EventArgs e)
         {
-            if (IsVisible) Hide();
-            else
-            {
-                Show();
-                Activate();
-                Console.Focus();
-            }
+            if (IsVisible) HideWindow();
+            else ShowWindow();
+        }
+
+        public void ShowWindow()
+        {
+            Show();
+            Activate();
+            Console.Focus();
+        }
+
+        public void HideWindow()
+        {
+            Console.Text = null;
+            Hide();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -47,8 +57,9 @@ namespace QuickLauncher
         private void Console_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key != Key.Enter) return;
+            launcher.RunProcess(Console.Text);
 
-            System.Windows.MessageBox.Show(Console.Text);
+            HideWindow();
         }
     }
 }
