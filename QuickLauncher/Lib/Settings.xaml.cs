@@ -35,12 +35,16 @@ namespace QuickLauncher.Lib
         {
             processes.Add(new LProcess("", ""));
             dataGrid.ItemsSource = processes;
+
+            SaveContetnt_Click(sender, e);
         }
 
         private void RemoveContent_Click(object sender, RoutedEventArgs e)
         {
             processes.Remove((LProcess) dataGrid.SelectedItem);
             dataGrid.ItemsSource = processes;
+
+            SaveContetnt_Click(sender, e);
         }
 
         private void SaveContetnt_Click(object sender, RoutedEventArgs e)

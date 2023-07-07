@@ -8,6 +8,7 @@
         AllowsTransparency="True"
         Background="Transparent"
         Closing="Window_Closing"
+        Deactivated="Window_Deactivated"
         Icon="icon.ico"
         mc:Ignorable="d"
         Title="MainWindow" Height="100" Width="500" WindowStyle="None">
