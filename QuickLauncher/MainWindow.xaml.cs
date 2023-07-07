@@ -25,7 +25,7 @@ namespace QuickLauncher
 
         void hotKey_HotKeyPush(object sender, EventArgs e)
         {
-            //イベント処理
+            label.Content = "押された";
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
