@@ -26,7 +26,7 @@ namespace QuickLauncher
             {
                 Visible = true,
                 Icon = new System.Drawing.Icon(icon),
-                Text = "タスクトレイ常駐アプリのテストです",
+                Text = "クイックランチャー",
                 ContextMenuStrip = menu
             };
             notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(NotifyIcon_Click);
@@ -36,7 +36,10 @@ namespace QuickLauncher
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                GetInstance().Show();
+                var window = GetInstance();
+
+                if (window.IsVisible) window.Hide();
+                else window.Show();
             }
         }
 
