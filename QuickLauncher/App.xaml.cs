@@ -13,6 +13,8 @@ namespace QuickLauncher
     /// </summary>
     public partial class App : Application
     {
+        private static MainWindow? _Instance = null;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -34,14 +36,19 @@ namespace QuickLauncher
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                var wnd = new MainWindow();
-                wnd.Show();
+                GetInstance().Show();
             }
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
             Shutdown();
+        }
+
+        public static MainWindow GetInstance()
+        {
+            _Instance ??= new MainWindow();
+            return _Instance;
         }
     }
 }
