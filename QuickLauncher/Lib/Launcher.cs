@@ -32,7 +32,7 @@ namespace QuickLauncher.Lib
         {
             if (!dic.ContainsKey(processName))
             {
-                MessageBox.Show($"{processName} は無効なプロセス名です");
+                MessageBox.Show($"無効なプロセス名です : {processName}");
                 return;
             }
 
