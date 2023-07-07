@@ -30,7 +30,8 @@ namespace QuickLauncher
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            hotKey.Dispose();
+            e.Cancel = true;
+            Hide();
         }
     }
 }
