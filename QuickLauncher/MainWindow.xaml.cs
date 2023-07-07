@@ -75,5 +75,10 @@ namespace QuickLauncher
 
             HideWindow();
         }
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            HideWindow();
+        }
     }
 }
