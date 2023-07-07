@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace QuickLauncher.Lib
 {
     public class Launcher
     {
-        private Dictionary<string, string> dic = new Dictionary<string, string>();
+        public Dictionary<string, string> dic = new Dictionary<string, string>();
         private string filePath = "data.txt";
 
         public Launcher()
@@ -42,7 +38,7 @@ namespace QuickLauncher.Lib
             Process.Start(app);
         }
 
-        private void Save()
+        public void Save()
         {
             StreamWriter writer = new StreamWriter(filePath);
             foreach (string write in dic.Keys)

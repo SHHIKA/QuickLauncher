@@ -1,0 +1,23 @@
+﻿<Window x:Class="QuickLauncher.Lib.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuickLauncher.Lib"
+         WindowStartupLocation="CenterScreen"
+        Icon="/icon.ico"
+        mc:Ignorable="d"
+        Title="Settings" Height="450" Width="800">
+    <Grid Margin="0,0,0,0">
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" Margin="10,10,10,217">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200" />
+                <DataGridTextColumn Header="Path" Binding="{Binding Path}" Width="400" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="AddContent" Content="追加" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" Height="30" Width="60" Click="AddContent_Click"/>
+        <Button x:Name="RemoveContent" Content="削除" HorizontalAlignment="Left" Margin="75,222,0,0" VerticalAlignment="Top" Height="30" Width="60" Click="RemoveContent_Click"/>
+        <Button x:Name="SaveContetnt" Content="保存" HorizontalAlignment="Left" Margin="140,222,0,0" VerticalAlignment="Top" Height="30" Width="60" Click="SaveContetnt_Click"/>
+
+    </Grid>
+</Window>

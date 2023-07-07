@@ -2,7 +2,6 @@
 using System.Windows;
 using QuickLauncher.Lib;
 using System.Windows.Forms;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QuickLauncher
@@ -54,9 +53,24 @@ namespace QuickLauncher
             return hotKey;
         }
 
+        public Launcher GetLauncher()
+        {
+            return launcher;
+        }
+
         private void Console_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key != Key.Enter) return;
+
+            if(Console.Text == "setting")
+            {
+                new Settings().Show();
+
+                HideWindow();
+
+                return;
+            }
+
             launcher.RunProcess(Console.Text);
 
             HideWindow();
