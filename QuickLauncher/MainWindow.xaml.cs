@@ -38,7 +38,7 @@ namespace QuickLauncher
 
         public void HideWindow()
         {
-            Console.Text = null;
+            Console.Text = "";
             Hide();
         }
 

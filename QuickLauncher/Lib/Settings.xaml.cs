@@ -9,14 +9,13 @@ namespace QuickLauncher.Lib
     /// </summary>
     public partial class Settings : Window
     {
-        public ObservableCollection<LProcess> processes { get; set; }
+        public ObservableCollection<LProcess> processes { get; set; } = null;
 
         public Settings()
         {
             InitializeComponent();
 
             Load();
-            dataGrid.ItemsSource = processes;
         }
 
         private void Load()
@@ -29,6 +28,8 @@ namespace QuickLauncher.Lib
             {
                 processes.Add(new LProcess(process_name, launcher.dic[process_name]));
             }
+
+            dataGrid.ItemsSource = processes;
         }
 
         private void AddContent_Click(object sender, RoutedEventArgs e)

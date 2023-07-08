@@ -33,7 +33,7 @@ namespace QuickLauncher.Lib
             }
 
             ProcessStartInfo app = new ProcessStartInfo();
-            app.FileName = processName;
+            app.FileName = dic[processName];
             app.UseShellExecute = true;
             Process.Start(app);
         }
