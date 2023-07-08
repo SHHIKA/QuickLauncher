@@ -19,7 +19,7 @@ namespace QuickLauncher
             InitializeComponent();
 
             launcher = new Launcher();
-            hotKey = new HotKey(MOD_KEY.ALT, Keys.F);
+            hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Enter);
             hotKey.HotKeyPush += new EventHandler(hotKey_HotKeyPush);
         }
 
