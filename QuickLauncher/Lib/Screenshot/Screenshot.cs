@@ -50,7 +50,7 @@ namespace QuickLauncher.Lib.Screenshot
             return bmp;
         }
 
-        private static void screenShot_Active()
+        private static void ScreenShot_Active()
         {
             using (var bmp = CaptureActiveWindow())
             {
@@ -58,7 +58,7 @@ namespace QuickLauncher.Lib.Screenshot
             }
         }
 
-        private static void screenShot_All()
+        private static void ScreenShot_All()
         {
             int left = SystemInformation.VirtualScreen.Left;
             int top = SystemInformation.VirtualScreen.Top;
