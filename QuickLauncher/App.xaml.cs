@@ -49,7 +49,7 @@ namespace QuickLauncher
         private void Exit_Click(object sender, EventArgs e)
         {
             GetInstance().Launcher_hotKey.Dispose();
-            GetInstance().Screenshot_hotKey.Dispose();
+            GetInstance().Screenshot_All_hotKey.Dispose();
             Shutdown();
         }
 
