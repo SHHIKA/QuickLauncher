@@ -48,7 +48,8 @@ namespace QuickLauncher
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            GetInstance().GetHotKey().Dispose();
+            GetInstance().Launcher_hotKey.Dispose();
+            GetInstance().Screenshot_hotKey.Dispose();
             Shutdown();
         }
 

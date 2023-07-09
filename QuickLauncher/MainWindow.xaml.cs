@@ -12,21 +12,32 @@ namespace QuickLauncher
     public partial class MainWindow : Window
     {
         private Launcher launcher;
-        private HotKey hotKey;
+        
+        public HotKey Launcher_hotKey;
+        public HotKey Screenshot_hotKey;
 
         public MainWindow()
         {
             InitializeComponent();
 
             launcher = new Launcher();
-            hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Enter);
-            hotKey.HotKeyPush += new EventHandler(hotKey_HotKeyPush);
+
+            Launcher_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Enter);
+            Launcher_hotKey.HotKeyPush += new EventHandler(hotKey_HotKeyPush);
+
+            Screenshot_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.ALT, Keys.S);
+            Screenshot_hotKey.HotKeyPush += new EventHandler(Screenshot);
         }
 
         private void hotKey_HotKeyPush(object sender, EventArgs e)
         {
             if (IsVisible) HideWindow();
             else ShowWindow();
+        }
+
+        private void Screenshot(object sender, EventArgs e)
+        {
+
         }
 
         public void ShowWindow()
@@ -46,11 +57,6 @@ namespace QuickLauncher
         {
             e.Cancel = true;
             Hide();
-        }
-
-        public HotKey GetHotKey()
-        {
-            return hotKey;
         }
 
         public Launcher GetLauncher()
