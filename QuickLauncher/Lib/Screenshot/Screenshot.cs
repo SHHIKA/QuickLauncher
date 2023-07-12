@@ -3,6 +3,7 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.IO;
 
 namespace QuickLauncher.Lib.Screenshot
 {
@@ -50,7 +51,7 @@ namespace QuickLauncher.Lib.Screenshot
         {
             using (var bmp = CaptureActiveWindow())
             {
-                bmp.Save(@"hoge\image.png", ImageFormat.Png);
+                bmp.Save(SaveFilePath(), ImageFormat.Png);
             }
         }
 
@@ -68,8 +69,18 @@ namespace QuickLauncher.Lib.Screenshot
                 {
                     g.CopyFromScreen(rect.X, rect.Y, 0, 0, rect.Size, CopyPixelOperation.SourceCopy);
                 }
-                bmp.Save(@"hoge\image.png", ImageFormat.Png);
+                bmp.Save(SaveFilePath(), ImageFormat.Png);
             }
+        }
+
+        private static string SaveFilePath()
+        {
+            string UserPictures = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            string time = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+            if (!Directory.Exists(@$"{UserPictures}\Screenshots")) Directory.CreateDirectory(@$"{UserPictures}\Screenshots");
+
+            return @$"{UserPictures}\Screenshots\{time}.png";
         }
     }
 }
