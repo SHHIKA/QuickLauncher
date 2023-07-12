@@ -28,7 +28,10 @@ namespace QuickLauncher
             Launcher_hotKey.HotKeyPush += new EventHandler(hotKey_HotKeyPush);
 
             Screenshot_All_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.ALT, Keys.S);
-            Screenshot_All_hotKey.HotKeyPush += new EventHandler(Screenshot_HotKeyPush);
+            Screenshot_All_hotKey.HotKeyPush += new EventHandler(ScreenshotAll_HotKeyPush);
+
+            Screenshot_Active_hotKey = new HotKey(MOD_KEY.ALT, Keys.S);
+            Screenshot_Active_hotKey.HotKeyPush += new EventHandler(ScreenshotActive_HotKeyPush);
         }
 
         private void hotKey_HotKeyPush(object sender, EventArgs e)
@@ -37,9 +40,14 @@ namespace QuickLauncher
             else ShowWindow();
         }
 
-        private void Screenshot_HotKeyPush(object sender, EventArgs e)
+        private void ScreenshotAll_HotKeyPush(object sender, EventArgs e)
         {
-            
+            Screenshot.ScreenShot_All();
+        }
+
+        private void ScreenshotActive_HotKeyPush(object sender, EventArgs e)
+        {
+            Screenshot.ScreenShot_Active();
         }
 
         public void ShowWindow()
