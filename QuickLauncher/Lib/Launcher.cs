@@ -15,7 +15,7 @@ namespace QuickLauncher.Lib
             if (!File.Exists(filePath)) File.Create(filePath).Close();
 
             StreamReader reader = new StreamReader(filePath);
-            string line;
+            string? line;
             while ((line = reader.ReadLine()) != null)
             {
                 string[] ss = line.Split("!!");

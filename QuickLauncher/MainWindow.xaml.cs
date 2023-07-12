@@ -34,18 +34,18 @@ namespace QuickLauncher
             Screenshot_Active_hotKey.HotKeyPush += new EventHandler(ScreenshotActive_HotKeyPush);
         }
 
-        private void hotKey_HotKeyPush(object sender, EventArgs e)
+        private void hotKey_HotKeyPush(object? sender, EventArgs e)
         {
             if (IsVisible) HideWindow();
             else ShowWindow();
         }
 
-        private void ScreenshotAll_HotKeyPush(object sender, EventArgs e)
+        private void ScreenshotAll_HotKeyPush(object? sender, EventArgs e)
         {
             Screenshot.ScreenShot_All();
         }
 
-        private void ScreenshotActive_HotKeyPush(object sender, EventArgs e)
+        private void ScreenshotActive_HotKeyPush(object? sender, EventArgs e)
         {
             Screenshot.ScreenShot_Active();
         }

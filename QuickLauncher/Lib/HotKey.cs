@@ -11,11 +11,11 @@ namespace QuickLauncher.Lib
     /// </summary>
     public class HotKey : IDisposable
     {
-        HotKeyForm form;
+        private HotKeyForm form;
         /// <summary>
         /// ホットキーが押されると発生する。
         /// </summary>
-        public event EventHandler HotKeyPush;
+        public event EventHandler? HotKeyPush;
 
         /// <summary>
         /// ホットキーを指定して初期化する。
