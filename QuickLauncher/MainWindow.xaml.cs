@@ -78,13 +78,23 @@ namespace QuickLauncher
         {
             if (e.Key != Key.Enter) return;
 
-            if(Console.Text == "setting")
+            switch (Console.Text)
             {
-                new Settings().Show();
+                case "/setting":
+                case "/set":
+                    new Settings().Show();
 
-                HideWindow();
+                    HideWindow();
 
-                return;
+                    return;
+
+                case "/delete":
+                case "/out":
+                    Launcher_hotKey.Dispose();
+                    Screenshot_All_hotKey.Dispose();
+                    System.Windows.Application.Current.Shutdown();
+
+                    return;
             }
 
             launcher.RunProcess(Console.Text);

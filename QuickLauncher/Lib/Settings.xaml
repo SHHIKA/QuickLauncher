@@ -9,15 +9,15 @@
         mc:Ignorable="d"
         Title="Settings" Height="450" Width="800">
     <Grid Margin="0,0,0,0">
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" Margin="10,10,10,217">
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" Margin="10,10,75,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="200" />
                 <DataGridTextColumn Header="パス" Binding="{Binding Path}" Width="400" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="AddContent" Content="追加" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" Height="30" Width="60" Click="AddContent_Click"/>
-        <Button x:Name="RemoveContent" Content="削除" HorizontalAlignment="Left" Margin="75,222,0,0" VerticalAlignment="Top" Height="30" Width="60" Click="RemoveContent_Click"/>
-        <Button x:Name="SaveContetnt" Content="保存" HorizontalAlignment="Left" Margin="140,222,0,0" VerticalAlignment="Top" Height="30" Width="60" Click="SaveContetnt_Click"/>
+        <Button x:Name="AddContent" Content="追加" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="30" Width="60" Click="AddContent_Click"/>
+        <Button x:Name="RemoveContent" Content="削除" HorizontalAlignment="Right" Margin="0,45,10,0" VerticalAlignment="Top" Height="30" Width="60" Click="RemoveContent_Click"/>
+        <Button x:Name="SaveContetnt" Content="保存" HorizontalAlignment="Right" Margin="0,80,10,0" VerticalAlignment="Top" Height="30" Width="60" Click="SaveContetnt_Click"/>
 
     </Grid>
 </Window>
