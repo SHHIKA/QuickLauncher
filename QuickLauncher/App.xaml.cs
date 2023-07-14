@@ -35,7 +35,7 @@ namespace QuickLauncher
             GetInstance();
         }
 
-        private void NotifyIcon_Click(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void NotifyIcon_Click(object? sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -46,7 +46,7 @@ namespace QuickLauncher
             }
         }
 
-        private void Exit_Click(object sender, EventArgs e)
+        private void Exit_Click(object? sender, EventArgs e)
         {
             GetInstance().Launcher_hotKey.Dispose();
             GetInstance().Screenshot_All_hotKey.Dispose();

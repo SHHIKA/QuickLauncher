@@ -11,7 +11,8 @@ namespace QuickLauncher.Lib
     /// </summary>
     public class HotKey : IDisposable
     {
-        private HotKeyForm form;
+        private readonly HotKeyForm form;
+
         /// <summary>
         /// ホットキーが押されると発生する。
         /// </summary>
@@ -23,23 +24,11 @@ namespace QuickLauncher.Lib
         /// </summary>
         /// <param name="modKey">修飾キー</param>
         /// <param name="key">キー</param>
-        public HotKey(MOD_KEY modKey, Keys key)
-        {
-            form = new HotKeyForm(modKey, key, raiseHotKeyPush);
-        }
+        public HotKey(MOD_KEY modKey, Keys key) => form = new HotKeyForm(modKey, key, RaiseHotKeyPush);
 
-        private void raiseHotKeyPush()
-        {
-            if (HotKeyPush != null)
-            {
-                HotKeyPush(this, EventArgs.Empty);
-            }
-        }
+        private void RaiseHotKeyPush() => HotKeyPush?.Invoke(this, EventArgs.Empty);
 
-        public void Dispose()
-        {
-            form.Dispose();
-        }
+        public void Dispose() => form.Dispose();
 
         private class HotKeyForm : Form
         {
@@ -50,15 +39,15 @@ namespace QuickLauncher.Lib
             extern static int UnregisterHotKey(IntPtr HWnd, int ID);
 
             const int WM_HOTKEY = 0x0312;
-            int id;
-            ThreadStart proc;
+            readonly int id;
+            readonly ThreadStart proc;
 
             public HotKeyForm(MOD_KEY modKey, Keys key, ThreadStart proc)
             {
                 this.proc = proc;
                 for (int i = 0x0000; i <= 0xbfff; i++)
                 {
-                    if (RegisterHotKey(this.Handle, i, modKey, key) != 0)
+                    if (RegisterHotKey(Handle, i, modKey, key) != 0)
                     {
                         id = i;
                         break;
@@ -72,16 +61,13 @@ namespace QuickLauncher.Lib
 
                 if (m.Msg == WM_HOTKEY)
                 {
-                    if ((int)m.WParam == id)
-                    {
-                        proc();
-                    }
+                    if ((int)m.WParam == id) proc();
                 }
             }
 
             protected override void Dispose(bool disposing)
             {
-                UnregisterHotKey(this.Handle, id);
+                _ = UnregisterHotKey(Handle, id);
                 base.Dispose(disposing);
             }
         }

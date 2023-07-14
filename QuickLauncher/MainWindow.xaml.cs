@@ -12,7 +12,7 @@ namespace QuickLauncher
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Launcher launcher;
+        private readonly Launcher launcher;
         
         public HotKey Launcher_hotKey;
         public HotKey Screenshot_All_hotKey;
@@ -25,29 +25,13 @@ namespace QuickLauncher
             launcher = new Launcher();
 
             Launcher_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Enter);
-            Launcher_hotKey.HotKeyPush += new EventHandler(hotKey_HotKeyPush);
+            Launcher_hotKey.HotKeyPush += new EventHandler(HotKey_HotKeyPush);
 
             Screenshot_All_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.ALT, Keys.S);
             Screenshot_All_hotKey.HotKeyPush += new EventHandler(ScreenshotAll_HotKeyPush);
 
             Screenshot_Active_hotKey = new HotKey(MOD_KEY.ALT, Keys.S);
             Screenshot_Active_hotKey.HotKeyPush += new EventHandler(ScreenshotActive_HotKeyPush);
-        }
-
-        private void hotKey_HotKeyPush(object? sender, EventArgs e)
-        {
-            if (IsVisible) HideWindow();
-            else ShowWindow();
-        }
-
-        private void ScreenshotAll_HotKeyPush(object? sender, EventArgs e)
-        {
-            Screenshot.ScreenShot_All();
-        }
-
-        private void ScreenshotActive_HotKeyPush(object? sender, EventArgs e)
-        {
-            Screenshot.ScreenShot_Active();
         }
 
         public void ShowWindow()
@@ -63,16 +47,28 @@ namespace QuickLauncher
             Hide();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true;
-            Hide();
-        }
-
         public Launcher GetLauncher()
         {
             return launcher;
         }
+
+        private void HotKey_HotKeyPush(object? sender, EventArgs e)
+        {
+            if (IsVisible) HideWindow();
+            else ShowWindow();
+        }
+
+        private void ScreenshotAll_HotKeyPush(object? sender, EventArgs e) => Screenshot.ScreenShot_All();
+
+        private void ScreenshotActive_HotKeyPush(object? sender, EventArgs e) => Screenshot.ScreenShot_Active();
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            HideWindow();
+        }
+
+        private void Window_Deactivated(object sender, EventArgs e) => HideWindow();
 
         private void Console_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -99,11 +95,6 @@ namespace QuickLauncher
 
             launcher.RunProcess(Console.Text);
 
-            HideWindow();
-        }
-
-        private void Window_Deactivated(object sender, EventArgs e)
-        {
             HideWindow();
         }
     }

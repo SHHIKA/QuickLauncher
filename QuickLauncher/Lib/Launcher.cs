@@ -7,14 +7,14 @@ namespace QuickLauncher.Lib
 {
     public class Launcher
     {
-        public Dictionary<string, string> dic = new Dictionary<string, string>();
-        private string filePath = "data.txt";
+        public Dictionary<string, string> dic = new();
+        private readonly string filePath = "data.txt";
 
         public Launcher()
         {
             if (!File.Exists(filePath)) File.Create(filePath).Close();
 
-            StreamReader reader = new StreamReader(filePath);
+            StreamReader reader = new(filePath);
             string? line;
             while ((line = reader.ReadLine()) != null)
             {
@@ -32,19 +32,18 @@ namespace QuickLauncher.Lib
                 return;
             }
 
-            ProcessStartInfo app = new ProcessStartInfo();
-            app.FileName = dic[processName];
-            app.UseShellExecute = true;
+            ProcessStartInfo app = new()
+            {
+                FileName = dic[processName],
+                UseShellExecute = true
+            };
             Process.Start(app);
         }
 
         public void Save()
         {
-            StreamWriter writer = new StreamWriter(filePath);
-            foreach (string write in dic.Keys)
-            {
-                writer.WriteLine(write + "!!" + dic[write]);
-            }
+            StreamWriter writer = new(filePath);
+            foreach (string write in dic.Keys) writer.WriteLine(write + "!!" + dic[write]);
             writer.Close();
         }
     }
