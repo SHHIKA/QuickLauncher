@@ -85,7 +85,7 @@ namespace QuickLauncher
                     return;
 
                 case "/delete":
-                case "/out":
+                case "/d":
                     Launcher_hotKey.Dispose();
                     Screenshot_All_hotKey.Dispose();
                     System.Windows.Application.Current.Shutdown();
