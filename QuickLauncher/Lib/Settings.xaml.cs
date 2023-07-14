@@ -9,11 +9,13 @@ namespace QuickLauncher.Lib
     /// </summary>
     public partial class Settings : Window
     {
-        public ObservableCollection<LProcess> processes { get; set; } = null;
+        public ObservableCollection<LProcess> Processes { get; set; }
 
         public Settings()
         {
             InitializeComponent();
+
+            Processes = new ObservableCollection<LProcess>();
 
             Load();
         }
@@ -22,28 +24,23 @@ namespace QuickLauncher.Lib
         {
             Launcher launcher = App.GetInstance().GetLauncher();
 
-            processes = new ObservableCollection<LProcess>();
+            foreach (string process_name in launcher.dic.Keys) Processes.Add(new LProcess(process_name, launcher.dic[process_name]));
 
-            foreach (string process_name in launcher.dic.Keys)
-            {
-                processes.Add(new LProcess(process_name, launcher.dic[process_name]));
-            }
-
-            dataGrid.ItemsSource = processes;
+            dataGrid.ItemsSource = Processes;
         }
 
         private void AddContent_Click(object sender, RoutedEventArgs e)
         {
-            processes.Add(new LProcess("", ""));
-            dataGrid.ItemsSource = processes;
+            Processes.Add(new LProcess("", ""));
+            dataGrid.ItemsSource = Processes;
 
             SaveContetnt_Click(sender, e);
         }
 
         private void RemoveContent_Click(object sender, RoutedEventArgs e)
         {
-            processes.Remove((LProcess) dataGrid.SelectedItem);
-            dataGrid.ItemsSource = processes;
+            Processes.Remove((LProcess) dataGrid.SelectedItem);
+            dataGrid.ItemsSource = Processes;
 
             SaveContetnt_Click(sender, e);
         }
@@ -51,12 +48,9 @@ namespace QuickLauncher.Lib
         private void SaveContetnt_Click(object sender, RoutedEventArgs e)
         {
             Launcher launcher = App.GetInstance().GetLauncher();
-            Dictionary<string, string> LPdic = new Dictionary<string, string>();
+            Dictionary<string, string> LPdic = new();
 
-            foreach (LProcess lProcess in processes)
-            {
-                LPdic.Add(lProcess.Name, lProcess.Path);
-            }
+            foreach (LProcess lProcess in Processes) LPdic.Add(lProcess.Name, lProcess.Path);
 
             launcher.dic = LPdic;
             launcher.Save();
