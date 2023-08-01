@@ -52,6 +52,8 @@ namespace QuickLauncher.Lib
             launcher.dic = LPdic;
             launcher.Save();
         }
+
+        private void Window_Deactivated(object sender, System.EventArgs e) => Close();
     }
 
     public class LProcess
