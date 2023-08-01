@@ -1,17 +1,8 @@
-﻿using QuickLauncher.Lib;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 
 namespace QuickLauncher
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private static MainWindow? _Instance = null;
@@ -23,6 +14,7 @@ namespace QuickLauncher
             var icon = GetResourceStream(new Uri("icon.ico", UriKind.Relative)).Stream;
             var menu = new System.Windows.Forms.ContextMenuStrip();
             menu.Items.Add("終了", null, Exit_Click);
+            
             var notifyIcon = new System.Windows.Forms.NotifyIcon
             {
                 Visible = true,
@@ -30,6 +22,7 @@ namespace QuickLauncher
                 Text = "クイックランチャー",
                 ContextMenuStrip = menu
             };
+            
             notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(NotifyIcon_Click);
 
             GetInstance();

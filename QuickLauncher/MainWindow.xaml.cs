@@ -7,9 +7,6 @@ using QuickLauncher.Lib.Screenshot;
 
 namespace QuickLauncher
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly Launcher launcher;
@@ -47,10 +44,7 @@ namespace QuickLauncher
             Hide();
         }
 
-        public Launcher GetLauncher()
-        {
-            return launcher;
-        }
+        public Launcher GetLauncher() => launcher;
 
         private void HotKey_HotKeyPush(object? sender, EventArgs e)
         {
@@ -77,7 +71,7 @@ namespace QuickLauncher
             switch (Console.Text)
             {
                 case "/setting":
-                case "/set":
+                case "/s":
                     new Settings().Show();
 
                     HideWindow();

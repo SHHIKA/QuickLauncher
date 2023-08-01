@@ -5,25 +5,12 @@ using System.Windows.Forms;
 
 namespace QuickLauncher.Lib
 {
-    /// <summary>
-    /// グローバルホットキーを登録するクラス。
-    /// 使用後は必ずDisposeすること。
-    /// </summary>
     public class HotKey : IDisposable
     {
         private readonly HotKeyForm form;
 
-        /// <summary>
-        /// ホットキーが押されると発生する。
-        /// </summary>
         public event EventHandler? HotKeyPush;
 
-        /// <summary>
-        /// ホットキーを指定して初期化する。
-        /// 使用後は必ずDisposeすること。
-        /// </summary>
-        /// <param name="modKey">修飾キー</param>
-        /// <param name="key">キー</param>
         public HotKey(MOD_KEY modKey, Keys key) => form = new HotKeyForm(modKey, key, RaiseHotKeyPush);
 
         private void RaiseHotKeyPush() => HotKeyPush?.Invoke(this, EventArgs.Empty);
@@ -59,10 +46,7 @@ namespace QuickLauncher.Lib
             {
                 base.WndProc(ref m);
 
-                if (m.Msg == WM_HOTKEY)
-                {
-                    if ((int)m.WParam == id) proc();
-                }
+                if (m.Msg == WM_HOTKEY && (int)m.WParam == id) proc();
             }
 
             protected override void Dispose(bool disposing)
@@ -73,9 +57,6 @@ namespace QuickLauncher.Lib
         }
     }
 
-    /// <summary>
-    /// HotKeyクラスの初期化時に指定する修飾キー
-    /// </summary>
     public enum MOD_KEY : int
     {
         ALT = 0x0001,

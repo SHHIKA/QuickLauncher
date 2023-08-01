@@ -4,9 +4,6 @@ using System.Windows;
 
 namespace QuickLauncher.Lib
 {
-    /// <summary>
-    /// settings.xaml の相互作用ロジック
-    /// </summary>
     public partial class Settings : Window
     {
         public ObservableCollection<LProcess> Processes { get; set; }

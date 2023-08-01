@@ -11,11 +11,9 @@ namespace QuickLauncher.Lib.Screenshot
     {
         private static Bitmap CaptureActiveWindow()
         {
-            //アクティブなウィンドウのデバイスコンテキストを取得
             IntPtr hWnd = NativeMethods.GetForegroundWindow();
             IntPtr winDC = NativeMethods.GetWindowDC(hWnd);
 
-            //ウィンドウの大きさを取得
             NativeMethods.RECT winRect = new();
 
             _ = NativeMethods.DwmGetWindowAttribute(
@@ -26,20 +24,16 @@ namespace QuickLauncher.Lib.Screenshot
 
             _ = NativeMethods.GetWindowRect(hWnd, ref winRect);
 
-            //Bitmapの作成
             var offsetX = bounds.left - winRect.left;
             var offsetY = bounds.top - winRect.top;
+            
             Bitmap bmp = new(bounds.right - bounds.left, bounds.bottom - bounds.top);
 
-            //Graphicsの作成
             using (var g = Graphics.FromImage(bmp))
             {
-                //Graphicsのデバイスコンテキストを取得
                 IntPtr hDC = g.GetHdc();
-                //Bitmapに画像をコピーする
-                Console.WriteLine(winRect);
+
                 _ = NativeMethods.BitBlt(hDC, 0, 0, bmp.Width, bmp.Height, winDC, offsetX, offsetY, NativeMethods.SRCCOPY);
-                //解放
                 g.ReleaseHdc(hDC);
             }
             _ = NativeMethods.ReleaseDC(hWnd, winDC);
