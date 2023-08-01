@@ -13,6 +13,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="100" Width="500" WindowStyle="None">
     <Grid>
-        <TextBox x:Name="Console" KeyDown="Console_KeyDown" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="480" Height="50" FontSize="36" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="Console" KeyDown="Console_KeyDown" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="480" FontSize="36" VerticalContentAlignment="Center" TextAlignment="Center"/>
     </Grid>
 </Window>
