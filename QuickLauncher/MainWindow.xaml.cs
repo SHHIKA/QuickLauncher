@@ -11,11 +11,13 @@ namespace QuickLauncher
     public partial class MainWindow : Window
     {
         private readonly Launcher launcher;
-        
+
+        #region HotKeyインスタンス
         private readonly HotKey Launcher_hotKey;
         private readonly HotKey Screenshot_All_hotKey;
         private readonly HotKey Screenshot_Active_hotKey;
         private readonly HotKey DeleteProcess_HotKey;
+        #endregion
 
         public MainWindow()
         {
@@ -56,6 +58,7 @@ namespace QuickLauncher
 
         public Launcher GetLauncher() => launcher;
 
+        #region ホットキーコールバック関数
         private void HotKey_HotKeyPush(object? sender, EventArgs e)
         {
             if (IsVisible) HideWindow();
@@ -67,7 +70,9 @@ namespace QuickLauncher
         private void ScreenshotActive_HotKeyPush(object? sender, EventArgs e) => Screenshot.ScreenShot_Active();
 
         private void DeleteProsess_HotKeyPush(object? sender, EventArgs e) => DeleteProcess.KillProcess();
+        #endregion
 
+        #region ウィンドウイベント関数
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
@@ -101,5 +106,6 @@ namespace QuickLauncher
 
             HideWindow();
         }
+        #endregion
     }
 }

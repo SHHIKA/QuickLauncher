@@ -54,7 +54,7 @@ namespace QuickLauncher.Lib.Screenshot
             int width = SystemInformation.VirtualScreen.Width;
             int hight = SystemInformation.VirtualScreen.Height;
 
-            Rectangle rect = new Rectangle(left, top, width, hight);
+            Rectangle rect = new(left, top, width, hight);
             using var bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
             using (var g = Graphics.FromImage(bmp)) g.CopyFromScreen(rect.X, rect.Y, 0, 0, rect.Size, CopyPixelOperation.SourceCopy);
             bmp.Save(SaveFilePath(), ImageFormat.Png);
