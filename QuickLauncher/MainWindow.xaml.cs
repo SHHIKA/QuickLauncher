@@ -22,12 +22,11 @@ namespace QuickLauncher
             launcher = new Launcher();
 
             Launcher_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Enter);
-            Launcher_hotKey.HotKeyPush += new EventHandler(HotKey_HotKeyPush);
-
             Screenshot_All_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.ALT, Keys.S);
-            Screenshot_All_hotKey.HotKeyPush += new EventHandler(ScreenshotAll_HotKeyPush);
-
             Screenshot_Active_hotKey = new HotKey(MOD_KEY.ALT, Keys.S);
+
+            Launcher_hotKey.HotKeyPush += new EventHandler(HotKey_HotKeyPush);
+            Screenshot_All_hotKey.HotKeyPush += new EventHandler(ScreenshotAll_HotKeyPush);
             Screenshot_Active_hotKey.HotKeyPush += new EventHandler(ScreenshotActive_HotKeyPush);
         }
 
@@ -42,6 +41,13 @@ namespace QuickLauncher
         {
             Console.Text = "";
             Hide();
+        }
+
+        public void HotKeyDispose()
+        {
+            Launcher_hotKey.Dispose();
+            Screenshot_All_hotKey.Dispose();
+            Screenshot_Active_hotKey.Dispose();
         }
 
         public Launcher GetLauncher() => launcher;
