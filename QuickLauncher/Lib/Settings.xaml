@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:QuickLauncher.Lib"
         WindowStartupLocation="CenterScreen"
         Deactivated="Window_Deactivated"
+        Closing="Window_Closing"
         Icon="/icon.ico"
         mc:Ignorable="d"
         Title="Settings" Height="450" Width="800">

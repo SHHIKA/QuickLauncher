@@ -72,7 +72,7 @@ namespace QuickLauncher
             {
                 case "/setting":
                 case "/s":
-                    new Settings().Show();
+                    App.GetSettings().ShowWindow();
 
                     HideWindow();
 

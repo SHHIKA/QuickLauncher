@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuickLauncher.Lib;
+using System;
 using System.Windows;
 
 namespace QuickLauncher
@@ -6,6 +7,7 @@ namespace QuickLauncher
     public partial class App : Application
     {
         private static MainWindow? _Instance = null;
+        private static Settings? _setting = null;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -25,7 +27,8 @@ namespace QuickLauncher
             
             notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(NotifyIcon_Click);
 
-            GetInstance();
+            _ = GetInstance();
+            _ = GetSettings();
         }
 
         private void NotifyIcon_Click(object? sender, System.Windows.Forms.MouseEventArgs e)
@@ -50,6 +53,12 @@ namespace QuickLauncher
         {
             _Instance ??= new MainWindow();
             return _Instance;
+        }
+
+        public static Settings GetSettings()
+        {
+            _setting ??= new Settings();
+            return _setting;
         }
     }
 }

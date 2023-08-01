@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -53,7 +54,15 @@ namespace QuickLauncher.Lib
             launcher.Save();
         }
 
+        public void ShowWindow()
+        {
+            Show();
+            Activate();
+        }
+
         private void Window_Deactivated(object sender, System.EventArgs e) => Close();
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => e.Cancel = true;
     }
 
     public class LProcess
