@@ -1,11 +1,14 @@
 ﻿using QuickLauncher.Lib;
 using System;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace QuickLauncher
 {
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
+        private static NotifyIcon? notifyIcon;
+
         private static MainWindow? _Instance = null;
         private static Settings? _setting = null;
 
@@ -14,10 +17,10 @@ namespace QuickLauncher
             base.OnStartup(e);
 
             var icon = GetResourceStream(new Uri("icon.ico", UriKind.Relative)).Stream;
-            var menu = new System.Windows.Forms.ContextMenuStrip();
+            var menu = new ContextMenuStrip();
             menu.Items.Add("終了", null, Exit_Click);
             
-            var notifyIcon = new System.Windows.Forms.NotifyIcon
+            notifyIcon = new NotifyIcon
             {
                 Visible = true,
                 Icon = new System.Drawing.Icon(icon),
@@ -25,15 +28,15 @@ namespace QuickLauncher
                 ContextMenuStrip = menu
             };
             
-            notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(NotifyIcon_Click);
+            notifyIcon.MouseClick += new MouseEventHandler(NotifyIcon_Click);
 
             _ = GetInstance();
             _ = GetSettings();
         }
 
-        private void NotifyIcon_Click(object? sender, System.Windows.Forms.MouseEventArgs e)
+        private void NotifyIcon_Click(object? sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 var window = GetInstance();
 
@@ -42,10 +45,13 @@ namespace QuickLauncher
             }
         }
 
-        private void Exit_Click(object? sender, EventArgs e)
+        private void Exit_Click(object? sender, EventArgs e) => AppShutdown();
+
+        public static void AppShutdown()
         {
+            notifyIcon?.Dispose();
             GetInstance().HotKeyDispose();
-            Shutdown();
+            Current.Shutdown();
         }
 
         public static MainWindow GetInstance()

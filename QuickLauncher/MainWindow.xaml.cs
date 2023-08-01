@@ -15,7 +15,6 @@ namespace QuickLauncher
         private readonly HotKey Launcher_hotKey;
         private readonly HotKey Screenshot_All_hotKey;
         private readonly HotKey Screenshot_Active_hotKey;
-
         private readonly HotKey DeleteProcess_HotKey;
 
         public MainWindow()
@@ -93,9 +92,7 @@ namespace QuickLauncher
 
                 case "/delete":
                 case "/d":
-                    Launcher_hotKey.Dispose();
-                    Screenshot_All_hotKey.Dispose();
-                    System.Windows.Application.Current.Shutdown();
+                    App.AppShutdown();
 
                     return;
             }
