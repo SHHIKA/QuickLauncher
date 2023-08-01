@@ -4,6 +4,7 @@ using QuickLauncher.Lib;
 using System.Windows.Forms;
 using System.Windows.Input;
 using QuickLauncher.Lib.Screenshot;
+using QuickLauncher.Lib.ProcessManager;
 
 namespace QuickLauncher
 {
@@ -11,9 +12,11 @@ namespace QuickLauncher
     {
         private readonly Launcher launcher;
         
-        public HotKey Launcher_hotKey;
-        public HotKey Screenshot_All_hotKey;
-        public HotKey Screenshot_Active_hotKey;
+        private readonly HotKey Launcher_hotKey;
+        private readonly HotKey Screenshot_All_hotKey;
+        private readonly HotKey Screenshot_Active_hotKey;
+
+        private readonly HotKey DeleteProcess_HotKey;
 
         public MainWindow()
         {
@@ -24,10 +27,12 @@ namespace QuickLauncher
             Launcher_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Enter);
             Screenshot_All_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.ALT, Keys.S);
             Screenshot_Active_hotKey = new HotKey(MOD_KEY.ALT, Keys.S);
+            DeleteProcess_HotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Delete);
 
             Launcher_hotKey.HotKeyPush += new EventHandler(HotKey_HotKeyPush);
             Screenshot_All_hotKey.HotKeyPush += new EventHandler(ScreenshotAll_HotKeyPush);
             Screenshot_Active_hotKey.HotKeyPush += new EventHandler(ScreenshotActive_HotKeyPush);
+            DeleteProcess_HotKey.HotKeyPush += new EventHandler(DeleteProsess_HotKeyPush);
         }
 
         public void ShowWindow()
@@ -61,6 +66,8 @@ namespace QuickLauncher
         private void ScreenshotAll_HotKeyPush(object? sender, EventArgs e) => Screenshot.ScreenShot_All();
 
         private void ScreenshotActive_HotKeyPush(object? sender, EventArgs e) => Screenshot.ScreenShot_Active();
+
+        private void DeleteProsess_HotKeyPush(object? sender, EventArgs e) => DeleteProcess.KillProcess();
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

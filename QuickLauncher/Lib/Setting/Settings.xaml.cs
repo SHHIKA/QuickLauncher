@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using QuickLauncher.Lib.ProcessManager;
 
 namespace QuickLauncher.Lib
 {

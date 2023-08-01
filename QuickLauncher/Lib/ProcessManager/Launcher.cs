@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
-namespace QuickLauncher.Lib
+namespace QuickLauncher.Lib.ProcessManager
 {
     public class Launcher
     {
