@@ -60,9 +60,13 @@ namespace QuickLauncher.Lib
             Activate();
         }
 
-        private void Window_Deactivated(object sender, System.EventArgs e) => Close();
+        private void Window_Deactivated(object sender, System.EventArgs e) => Hide();
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => e.Cancel = true;
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
+        }
     }
 
     public class LProcess
