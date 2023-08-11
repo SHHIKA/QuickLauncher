@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace QuickLauncher.Lib.ProcessManager
@@ -37,7 +38,7 @@ namespace QuickLauncher.Lib.ProcessManager
                 FileName = dic[processName],
                 UseShellExecute = true
             };
-            Process.Start(app);
+            Task.Run(() => Process.Start(app));
         }
 
         public void Save()
