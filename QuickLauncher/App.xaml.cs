@@ -16,7 +16,7 @@ namespace QuickLauncher
         {
             base.OnStartup(e);
 
-            var icon = GetResourceStream(new Uri("icon.ico", UriKind.Relative)).Stream;
+            var icon = GetResourceStream(new ("icon.ico", UriKind.Relative)).Stream;
             var menu = new ContextMenuStrip();
             menu.Items.Add("終了", null, Exit_Click);
             

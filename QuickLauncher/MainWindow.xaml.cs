@@ -17,6 +17,7 @@ namespace QuickLauncher
         private readonly HotKey Screenshot_All_hotKey;
         private readonly HotKey Screenshot_Active_hotKey;
         private readonly HotKey DeleteProcess_HotKey;
+        private readonly HotKey MinimizedProcess_HotKey;
         #endregion
 
         public MainWindow()
@@ -29,11 +30,13 @@ namespace QuickLauncher
             Screenshot_All_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.ALT, Keys.S);
             Screenshot_Active_hotKey = new HotKey(MOD_KEY.ALT, Keys.S);
             DeleteProcess_HotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Delete);
+            MinimizedProcess_HotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Down);
 
             Launcher_hotKey.HotKeyPush += new EventHandler(HotKey_HotKeyPush);
             Screenshot_All_hotKey.HotKeyPush += new EventHandler(ScreenshotAll_HotKeyPush);
             Screenshot_Active_hotKey.HotKeyPush += new EventHandler(ScreenshotActive_HotKeyPush);
             DeleteProcess_HotKey.HotKeyPush += new EventHandler(DeleteProsess_HotKeyPush);
+            MinimizedProcess_HotKey.HotKeyPush += new EventHandler(MinimizedProcess_HotKeyPush);
         }
 
         public void ShowWindow()
@@ -54,6 +57,8 @@ namespace QuickLauncher
             Launcher_hotKey.Dispose();
             Screenshot_All_hotKey.Dispose();
             Screenshot_Active_hotKey.Dispose();
+            DeleteProcess_HotKey.Dispose();
+            MinimizedProcess_HotKey.Dispose();
         }
 
         public Launcher GetLauncher() => launcher;
@@ -69,7 +74,9 @@ namespace QuickLauncher
 
         private void ScreenshotActive_HotKeyPush(object? sender, EventArgs e) => Screenshot.ScreenShot_Active();
 
-        private void DeleteProsess_HotKeyPush(object? sender, EventArgs e) => DeleteProcess.KillProcess();
+        private void DeleteProsess_HotKeyPush(object? sender, EventArgs e) => ProcessController.KillProcess();
+
+        private void MinimizedProcess_HotKeyPush(object? sender, EventArgs e) => ProcessController.ProcessMinimized();
         #endregion
 
         #region ウィンドウイベント関数
@@ -100,6 +107,8 @@ namespace QuickLauncher
                     App.AppShutdown();
 
                     return;
+
+                case "": return;
             }
 
             launcher.RunProcess(Console.Text);
