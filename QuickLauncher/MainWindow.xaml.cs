@@ -30,7 +30,7 @@ namespace QuickLauncher
             Screenshot_All_hotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.ALT, Keys.S);
             Screenshot_Active_hotKey = new HotKey(MOD_KEY.ALT, Keys.S);
             DeleteProcess_HotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Delete);
-            MinimizedProcess_HotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.SHIFT, Keys.Down);
+            MinimizedProcess_HotKey = new HotKey(MOD_KEY.CONTROL | MOD_KEY.ALT, Keys.D);
 
             Launcher_hotKey.HotKeyPush += new EventHandler(HotKey_HotKeyPush);
             Screenshot_All_hotKey.HotKeyPush += new EventHandler(ScreenshotAll_HotKeyPush);
