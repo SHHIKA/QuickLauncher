@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -11,7 +10,8 @@ namespace QuickLauncher.Lib.QUWindow
         public Translation()
         {
             InitializeComponent();
-            
+
+            Topmost = true;
             ToTranslate.Focus();
         }
 
@@ -31,6 +31,7 @@ namespace QuickLauncher.Lib.QUWindow
             string translatedText = ParseGoogleTranslateResponse(responseBody);
 
             FromTranslate.Text = translatedText;
+            Clipboard.SetText(translatedText);
         }
 
         private static string ParseGoogleTranslateResponse(string responseBody)
