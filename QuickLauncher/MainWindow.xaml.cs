@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using QuickLauncher.Lib.Screenshot;
 using QuickLauncher.Lib.ProcessManager;
+using QuickLauncher.Lib.QUWindow;
 
 namespace QuickLauncher
 {
@@ -48,7 +49,7 @@ namespace QuickLauncher
 
         public void HideWindow()
         {
-            Console.Text = "";
+            Console.Text = string.Empty;
             Hide();
         }
 
@@ -95,6 +96,7 @@ namespace QuickLauncher
             if (Console.Text.StartsWith("/l"))
             {
                 launcher.RunProcess(Console.Text.Split(" ")[1]);
+                HideWindow();
                 return;
             }
 
@@ -112,6 +114,12 @@ namespace QuickLauncher
                 case "/d":
                     App.AppShutdown();
 
+                    return;
+
+                case "/translation":
+                case "/t":
+                    new Translation().Show();
+                    HideWindow();
                     return;
             }
 

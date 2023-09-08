@@ -1,0 +1,14 @@
+﻿<Window x:Class="QuickLauncher.Lib.QUWindow.Translation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuickLauncher.Lib.QUWindow"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="Translation" Height="150" Width="800">
+    <Grid>
+        <TextBox x:Name="ToTranslate" KeyDown="ToTranslate_KeyDown" HorizontalAlignment="Center" Margin="0,-50,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="780"/>
+        <TextBox x:Name="FromTranslate" HorizontalAlignment="Center" Margin="0,50,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="780"/>
+    </Grid>
+</Window>
