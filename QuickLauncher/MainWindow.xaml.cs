@@ -93,13 +93,6 @@ namespace QuickLauncher
         {
             if (e.Key != Key.Enter) return;
 
-            if (Console.Text.StartsWith("/l"))
-            {
-                launcher.RunProcess(Console.Text.Split(" ")[1]);
-                HideWindow();
-                return;
-            }
-
             switch (Console.Text)
             {
                 case "/setting":
@@ -122,6 +115,8 @@ namespace QuickLauncher
                     HideWindow();
                     return;
             }
+
+            launcher.RunProcess(Console.Text);
 
             HideWindow();
         }
